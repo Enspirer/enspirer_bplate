@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Settings; 
+
 if (! function_exists('app_name')) {
     /**
      * Helper to grab the application name.
@@ -95,6 +97,24 @@ if (! function_exists('my_asset')) {
     function my_asset($path, $secure = null)
     {
          return app('url')->asset(''.$path, $secure);        
+    }
+}
+
+if (! function_exists('get_settings')) {
+    /**
+     * Return the route to the "home" page depending on authentication/authorization status.
+     *
+     * @return string
+     */
+    function get_settings($key)
+    {       
+        $settings = Settings::where('key',$key)->first();
+        if($settings == null){
+            return null;
+        }else{
+            return $settings->value;
+        }
+
     }
 }
 

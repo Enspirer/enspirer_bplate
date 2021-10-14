@@ -13,9 +13,52 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{active_class(Route::is('admin/file_manager'))}}" href="{{ route('admin.file_manager.index') }}">
+                <i class="nav-icon fas fa-folder-open"></i>
+                    File Manager
+                </a>
+            </li>
+
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
                     @lang('menus.backend.sidebar.system')
+                </li>
+
+                <li class="nav-item nav-dropdown ">
+                    <a class="nav-link nav-dropdown-toggle " href="#">
+                        <i class="nav-icon fas fa-cog"></i>
+                        Settings
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{active_class(Route::is('admin/settings'))}}" href="{{ route('admin.settings.index') }}">                        
+                                General Settings
+                            </a>  
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link {{active_class(Route::is('admin/about_us'))}}" href="{{ route('admin.about_us') }}">
+                                About Us
+                            </a>
+                        </li>                    
+                        <li class="nav-item">
+                            <a class="nav-link {{active_class(Route::is('admin/privacy_policy'))}}" href="{{ route('admin.privacy_policy') }}">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{active_class(Route::is('admin/terms_and_conditions'))}}" href="{{ route('admin.terms_and_conditions') }}">
+                                Terms and Conditions
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{active_class(Route::is('admin/contactus_thanks'))}}" href="{{ route('admin.contactus_thanks') }}">
+                                Contact Us Thanks Email
+                            </a>
+                        </li>                   
+                    </ul>
                 </li>
 
                 <li class="nav-item nav-dropdown {{
