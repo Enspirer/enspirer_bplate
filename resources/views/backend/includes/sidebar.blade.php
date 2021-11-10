@@ -42,6 +42,11 @@
                             Category
                         </a>
                     </li>  
+                    <li class="nav-item">
+                        <a class="nav-link {{active_class(Route::is('admin/post'))}}" href="{{ route('admin.post.index') }}">                            
+                            Post
+                        </a>
+                    </li>  
                 </ul>
             </li>  
 

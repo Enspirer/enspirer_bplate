@@ -37,3 +37,13 @@ Breadcrumbs::for('admin.category.create', function ($trail) {
 Breadcrumbs::for('admin.category.edit', function ($trail) {
     $trail->push('Edit Category', route('admin.category.edit',1));
 });
+
+Breadcrumbs::for('admin.post.index', function ($trail) {
+    $trail->push('Post', route('admin.post.index'));
+});
+Breadcrumbs::for('admin.post.create', function ($trail) {
+    $trail->push('Create Post', route('admin.post.create'));
+});
+Breadcrumbs::for('admin.post.edit', function ($trail) {
+    $trail->push('Edit Post', route('admin.post.edit',1));
+});
