@@ -10,9 +10,21 @@ class ModuleExplorerController extends Controller
 {
     public function index()
     {
-        $modules = Module::all();
+        $installed_module = self::get_installed_module();
+        $explorer_module = self::get_explorer_module();
+        return view('backend.module_explorer.index',[
+            'installed_modules' => $installed_module,
+            'explorer_modules' => $explorer_module
+        ]);
+    }
+
+
+    public static function get_installed_module()
+    {
+        $modules = Module::getByStatus(1);
         $outArray = [];
         foreach ($modules as $mod){
+
             try{
                 $moduleJson =  file_get_contents($mod->getPath().'/'.'module.json');
             }catch (\Exception $exception){
@@ -23,21 +35,62 @@ class ModuleExplorerController extends Controller
             }else{
                 $moduleMetaArray = null;
             }
+
             $outModule = [
                 'module_name' => $mod->getName(),
                 'path' => $mod->getPath(),
-                'meta_details' => $moduleMetaArray
+                'meta_details' => $moduleMetaArray,
+                'status' => ''
             ];
             array_push($outArray,$outModule);
         }
-        return view('backend.module_explorer.index',[
-            'modules' => $outArray
-        ]);
+        return $outArray;
     }
+
+
+    public static function get_explorer_module()
+    {
+        $modules = Module::getByStatus(0);
+        $outArray = [];
+        foreach ($modules as $mod){
+
+            try{
+                $moduleJson =  file_get_contents($mod->getPath().'/'.'module.json');
+            }catch (\Exception $exception){
+                $moduleJson = null;
+            }
+            if($moduleJson){
+                $moduleMetaArray = json_decode($moduleJson);
+            }else{
+                $moduleMetaArray = null;
+            }
+
+            $outModule = [
+                'module_name' => $mod->getName(),
+                'path' => $mod->getPath(),
+                'meta_details' => $moduleMetaArray,
+                'status' => ''
+            ];
+            array_push($outArray,$outModule);
+        }
+        return $outArray;
+    }
+
 
     public function install(Request $request)
     {
+        $module_name = $request->module_name;
+        $module = Module::find($module_name);
+        $module->enable();
+        return back();
+    }
 
+    public function uninstall(Request $request)
+    {
+        $module_name = $request->module_name;
+        $module = Module::find($module_name);
+        $module->disable();
+        return back();
     }
 
 }

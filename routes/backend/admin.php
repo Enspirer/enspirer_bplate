@@ -18,6 +18,8 @@ Route::get('file_manager/delete/{id}', [FileManagerController::class, 'destroy']
 
 Route::get('module-explorer', [ModuleExplorerController::class, 'index'])->name('module.index');
 Route::get('module-explorer/show/{slug}', [ModuleExplorerController::class, 'show'])->name('module.show');
+Route::post('module-explorer/install/', [ModuleExplorerController::class, 'install'])->name('module.install');
+Route::post('module-explorer/uninstall/', [ModuleExplorerController::class, 'uninstall'])->name('module.uninstall');
 
 
 Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
