@@ -28,13 +28,17 @@
                 </a>
             </li>
 
-            
-            <li class="nav-item">
-                <a class="nav-link {{ active_class(Route::is('admin/module-explorer'))}}" href="{{ route('admin.module.index') }}">
-                    <i class="nav-icon fa fa-box"></i>
-                    Blog
-                </a>
-            </li>
+            @if(Module::find('Blog')->isStatus(1))
+                <li class="nav-item">
+                    <a class="nav-link {{ active_class(Route::is('admin/module-explorer'))}}" href="{{ route('admin.module.index') }}">
+                        <i class="nav-icon fa fa-box"></i>
+                        Blog
+                    </a>
+                </li>
+            @else
+
+            @endif
+
 
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
