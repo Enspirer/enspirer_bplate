@@ -39,14 +39,19 @@
 
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link {{active_class(Route::is('admin/category'))}}" href="{{ route('admin.category.index') }}">
+                                <a class="nav-link {{active_class(Route::is('admin/category'))}}" href="{{ route('admin.category.index') }}">                            
                                     Category
                                 </a>
-                            </li>
+                            </li>  
+                            <li class="nav-item">
+                                <a class="nav-link {{active_class(Route::is('admin/post'))}}" href="{{ route('admin.post.index') }}">                            
+                                    Post
+                                </a>
+                            </li>  
                         </ul>
-                    </li>
-                @endif
+                    </li>  
 
+                @endif
             @endif
 
 
