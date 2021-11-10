@@ -29,12 +29,22 @@
             </li>
 
             @if(Module::find('Blog')->isStatus(1))
-                <li class="nav-item">
-                    <a class="nav-link {{ active_class(Route::is('admin/module-explorer'))}}" href="{{ route('admin.module.index') }}">
-                        <i class="nav-icon fa fa-box"></i>
-                        Blog
-                    </a>
-                </li>
+
+            <li class="nav-item nav-dropdown ">
+                <a class="nav-link nav-dropdown-toggle " href="#">
+                    <i class="nav-icon fas fa-newspaper"></i>
+                    Blog
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{active_class(Route::is('admin/category'))}}" href="{{ route('admin.category.index') }}">                            
+                            Category
+                        </a>
+                    </li>  
+                </ul>
+            </li>  
+
             @else
 
             @endif
