@@ -13,6 +13,14 @@
                 </a>
             </li>
 
+
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Route::is('admin/module-explorer'))}}" href="{{ route('admin.module.index') }}">
+                    <i class="nav-icon fa fa-box"></i>
+                    Module Explorer
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link {{active_class(Route::is('admin/file_manager'))}}" href="{{ route('admin.file_manager.index') }}">
                 <i class="nav-icon fas fa-folder-open"></i>
