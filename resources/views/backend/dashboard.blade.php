@@ -71,31 +71,74 @@
 </style>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="card-box" style="background-color: #055147; border-radius: 15px 15px 15px 15px;">
-                    <div class="inner">
-                        <h3>Lorem</h3>
-                        <p>Lorem Ipsum</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-users mb-4 mr-2" aria-hidden="true"></i>
-                    </div>
-                    <a href="" class="card-box-footer" style="border-radius: 0px 0px 15px 15px;">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-sm-6">
-                <div class="card-box" style="background-color: #487662; border-radius: 15px 15px 15px 15px;">
-                    <div class="inner">
-                        <h3>Lorem</h3>
-                        <p>Lorem Ipsum</p>
+        @if(Module::has('Blog'))
+            @if(Module::find('Blog')->isStatus(1))
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box" style="background-color: #055147; border-radius: 15px 15px 15px 15px;">
+                        <div class="inner">
+                            <h3>{{$category}}</h3>
+                            <p>Category</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-list mb-4 mr-2" aria-hidden="true"></i>
+                        </div>
+                        <a href="{{url('admin/category')}}" class="card-box-footer" style="border-radius: 0px 0px 15px 15px;">View More <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-user-tie mb-4 mr-2" aria-hidden="true"></i>
-                    </div>
-                    <a href="" class="card-box-footer" style="border-radius: 0px 0px 15px 15px;">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
+            @else
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box" style="background-color: #055147; border-radius: 15px 15px 15px 15px;">
+                        <div class="inner">
+                            <h3>Lorem</h3>
+                            <p>Lorem Ipsum</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-tie mb-4 mr-2" aria-hidden="true"></i>
+                        </div>
+                        <a href="" class="card-box-footer" style="border-radius: 0px 0px 15px 15px;">View More <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+            @endif
+        @endif  
+
+        @if(Module::has('Blog'))
+            @if(Module::find('Blog')->isStatus(1))
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box" style="background-color: #487662; border-radius: 15px 15px 15px 15px;">
+                        <div class="inner">
+                            <h3>{{$post}}</h3>
+                            <p>Post</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-newspaper mb-4 mr-2" aria-hidden="true"></i>
+                        </div>
+                        <a href="{{url('admin/post')}}" class="card-box-footer" style="border-radius: 0px 0px 15px 15px;">View More <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+            @else
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box" style="background-color: #487662; border-radius: 15px 15px 15px 15px;">
+                        <div class="inner">
+                            <h3>Lorem</h3>
+                            <p>Lorem Ipsum</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users mb-4 mr-2" aria-hidden="true"></i>
+                        </div>
+                        <a href="" class="card-box-footer" style="border-radius: 0px 0px 15px 15px;">View More <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+            @endif
+        @endif
+
+          
             <div class="col-lg-3 col-sm-6">
                 <div class="card-box" style="background-color: #79a37d; border-radius: 15px 15px 15px 15px;">
                     <div class="inner">
