@@ -79,6 +79,8 @@ class ModuleExplorerController extends Controller
 
     public function install(Request $request)
     {
+        \Artisan::call('module:migrate '.$request->module_name);
+
         $module_name = $request->module_name;
         $module = Module::find($module_name);
         $module->enable();
@@ -87,6 +89,7 @@ class ModuleExplorerController extends Controller
 
     public function uninstall(Request $request)
     {
+        \Artisan::call('module:migrate-rollback '.$request->module_name);
         $module_name = $request->module_name;
         $module = Module::find($module_name);
         $module->disable();
