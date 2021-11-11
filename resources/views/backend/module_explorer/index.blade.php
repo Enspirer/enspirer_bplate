@@ -32,12 +32,7 @@
                                             {{$explorer_module['meta_details']->description}}
                                         </div>
                                         <div class="card-header">
-                                            <form action="{{route('admin.module.install')}}" method="post">
-                                                {{csrf_field()}}
-                                                <input type="hidden" name="module_name" value="{{$explorer_module['module_name']}}">
-                                                <button class="btn btn-primary" type="submit">Install</button>
-                                            </form>
-
+                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#install">Install</button>                                       
                                         </div>
                                     </div>
                                 </div>
@@ -57,13 +52,8 @@
                                         <div class="card-body">
                                             {{$moule['meta_details']->description}}
                                         </div>
-                                        <div class="card-header">
-                                            <form action="{{route('admin.module.uninstall')}}" method="post">
-                                                {{csrf_field()}}
-                                                <input type="hidden" name="module_name" value=" {{$moule['module_name']}}">
-                                                <button class="btn btn-primary" type="submit">Uninstall</button>
-                                            </form>
-
+                                        <div class="card-header">                                            
+                                            <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#uninstall">Uninstall</button>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +67,63 @@
     </div>
 
 
+@foreach($explorer_modules as $explorer_module)
 
+    <div class="modal fade" id="install" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                
+                <form action="{{route('admin.module.install')}}" method="post">
+                {{csrf_field()}}
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="color:red">Warning!</h4>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button> 
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="mb-3" style="line-height:30px">You are trying to install the "{{$explorer_module['module_name']}}" module.</h5>
+                    </div>
 
+                    <div class="modal-footer">
+                        <input type="hidden" name="module_name" value="{{$explorer_module['module_name']}}">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Install</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+@endforeach
+
+@foreach($installed_modules as $moule)
+
+    <div class="modal fade" id="uninstall" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                
+                <form action="{{route('admin.module.uninstall')}}" method="post">
+                {{csrf_field()}}
+                                                
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="color:red">Warning!</h4>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button> 
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="mb-3" style="line-height:30px">You are trying to uninstall the "{{$moule['module_name']}}" module. If unistalled, all the data in {{$moule['module_name']}} module will be deleted.</h5>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="hidden" name="module_name" value=" {{$moule['module_name']}}">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Uninstall</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+@endforeach
 
 @endsection
