@@ -12,8 +12,10 @@
                 <div class="card-header">
                     <strong>Post&nbsp;</strong>
 
-                    <a href="{{route('admin.post.create')}}" class="btn btn-primary pull-right ml-4">Create New</a>
-                   
+                    @if(auth()->user()->can('insert blog posts'))
+                        <a href="{{route('admin.post.create')}}" class="btn btn-primary pull-right ml-4">Create New</a>
+                    @endif
+
                 </div><!--card-header-->
 
                 <div class="card-body">

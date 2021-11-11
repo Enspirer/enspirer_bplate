@@ -12,7 +12,9 @@
                 <div class="card-header">
                     <strong>Category&nbsp;</strong>
 
-                    <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right ml-4">Create New</a>
+                    @if(auth()->user()->can('insert blog category'))
+                        <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right ml-4">Create New</a>
+                    @endif
 
                 </div><!--card-header-->
 

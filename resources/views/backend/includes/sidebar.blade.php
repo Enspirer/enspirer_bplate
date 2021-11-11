@@ -38,16 +38,23 @@
                         </a>
 
                         <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link {{active_class(Route::is('admin/category'))}}" href="{{ route('admin.category.index') }}">                            
-                                    Category
-                                </a>
-                            </li>  
-                            <li class="nav-item">
-                                <a class="nav-link {{active_class(Route::is('admin/post'))}}" href="{{ route('admin.post.index') }}">                            
-                                    Post
-                                </a>
-                            </li>  
+
+                            @if(auth()->user()->can('view blog category'))
+                                <li class="nav-item">
+                                    <a class="nav-link {{active_class(Route::is('admin/category'))}}" href="{{ route('admin.category.index') }}">                            
+                                        Category
+                                    </a>
+                                </li>  
+                            @endif
+
+                            @if(auth()->user()->can('view blog posts'))
+                                <li class="nav-item">
+                                    <a class="nav-link {{active_class(Route::is('admin/post'))}}" href="{{ route('admin.post.index') }}">                            
+                                        Post
+                                    </a>
+                                </li>  
+                            @endif
+
                         </ul>
                     </li>  
 

@@ -28,9 +28,19 @@ class NewsController extends Controller
             return DataTables::of($data)
                 ->addColumn('action', function($data){
                        
-                    $button = '<a href="'.route('admin.post.edit',$data->id).'" name="edit" id="'.$data->id.'" class="edit btn btn-secondary btn-sm ml-3 mr-3"><i class="fas fa-edit"></i> Edit </a>';
-                    $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>';
-                        return $button;
+                    if(auth()->user()->can('edit blog posts')){
+                        $button = '<a href="'.route('admin.post.edit',$data->id).'" name="edit" id="'.$data->id.'" class="edit btn btn-secondary btn-sm ml-3 mr-3"><i class="fas fa-edit"></i> Edit </a>';
+                    }else{
+                        $button = '';
+                    }
+                    
+                    if(auth()->user()->can('delete blog posts')){
+                        $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>';
+                    }else{
+                        $button .= '';
+                    }
+                    
+                    return $button;
                 })                    
                 ->rawColumns(['action'])
                 ->make(true);

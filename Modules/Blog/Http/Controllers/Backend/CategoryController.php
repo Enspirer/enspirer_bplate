@@ -24,8 +24,17 @@ class CategoryController extends Controller
         $category = Category::get();
         return Datatables::of($category)
             ->addColumn('action', function($row){
-                $btn1 = '<a href="'.route('admin.category.edit',$row->id).'" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit </a>';
-                $btn2 = ' <button type="button" name="delete" id="'.$row->id.'" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>';
+
+                if(auth()->user()->can('edit blog category')){
+                    $btn1 = '<a href="'.route('admin.category.edit',$row->id).'" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit </a>';
+                }else{
+                    $btn1 = '';
+                }
+                if(auth()->user()->can('delete blog category')){
+                    $btn2 = ' <button type="button" name="delete" id="'.$row->id.'" class="delete btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>';
+                }else{
+                    $btn2 = '';
+                }
                 return $btn1.$btn2;
             })
             ->rawColumns(['action'])
